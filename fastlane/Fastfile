@@ -24,8 +24,13 @@ platform :ios do
       export_options: {
         teamID: ENV["TEAM_ID"],
         uploadSymbols: true,
-        compileBitcode: false
+        compileBitcode: false,
+        provisioningProfiles: {
+          "com.technoetic.HealthBotWatch.ios" => "HealthBotWatch iOS AppStore",
+          "com.technoetic.HealthBotWatch" => "HealthBotWatch AppStore"
+        }
       },
+      xcargs: "-allowProvisioningUpdates",
       clean: true
     )
 

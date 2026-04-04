@@ -38,11 +38,13 @@ jobs:
             -S apple-tool:,apple: \
             -s -k "temp_password" $KEYCHAIN_PATH
 
-      - name: Install Provisioning Profile
+      - name: Install Provisioning Profiles
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > \
             ~/Library/MobileDevice/Provisioning\ Profiles/HealthBotWatch_AppStore.mobileprovision
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > \
+            ~/Library/MobileDevice/Provisioning\ Profiles/HealthBotWatch_iOS_AppStore.mobileprovision
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
