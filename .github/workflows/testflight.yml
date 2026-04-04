@@ -41,10 +41,17 @@ jobs:
       - name: Install Provisioning Profiles
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          # Decode profiles and save with UUID filename (required by Xcode)
+          WATCH_PP=$(echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode)
+          IOS_PP=$(echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode)
+          WATCH_UUID=$(echo "$WATCH_PP" | security cms -D 2>/dev/null | plutil -extract UUID xml1 -o - - | xmllint --xpath "//string/text()" - 2>/dev/null || echo "watch-profile")
+          IOS_UUID=$(echo "$IOS_PP" | security cms -D 2>/dev/null | plutil -extract UUID xml1 -o - - | xmllint --xpath "//string/text()" - 2>/dev/null || echo "ios-profile")
           echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > \
-            ~/Library/MobileDevice/Provisioning\ Profiles/HealthBotWatch_AppStore.mobileprovision
+            ~/Library/MobileDevice/Provisioning\ Profiles/${WATCH_UUID}.mobileprovision
           echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > \
-            ~/Library/MobileDevice/Provisioning\ Profiles/HealthBotWatch_iOS_AppStore.mobileprovision
+            ~/Library/MobileDevice/Provisioning\ Profiles/${IOS_UUID}.mobileprovision
+          echo "Installed profiles: $WATCH_UUID, $IOS_UUID"
+          ls ~/Library/MobileDevice/Provisioning\ Profiles/
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
