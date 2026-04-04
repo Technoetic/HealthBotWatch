@@ -34,6 +34,10 @@ jobs:
             -destination 'generic/platform=watchOS' \
             -archivePath build/HealthBotWatch.xcarchive \
             -configuration Release \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8 \
+            -authenticationKeyID ${{ secrets.APP_STORE_CONNECT_KEY_ID }} \
+            -authenticationKeyIssuerID ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }} \
             DEVELOPMENT_TEAM=${{ secrets.TEAM_ID }} \
             CODE_SIGN_STYLE=Automatic \
             | xcbeautify
