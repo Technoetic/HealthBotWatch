@@ -32,7 +32,7 @@ platform :ios do
         },
         signingCertificate: "iPhone Distribution"
       },
-      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' PROVISIONING_PROFILE[com.technoetic.HealthBotWatch]=ba89b494-bf79-4d03-823c-c18797ae6c65 PROVISIONING_PROFILE[com.technoetic.HealthBotWatch.watchkitapp]=1d1e7d90-0e4f-42e6-b4a8-07a6cfd49de8",
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution'",
       clean: true
     )
 
