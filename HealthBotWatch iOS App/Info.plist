@@ -4,7 +4,11 @@
 <dict>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
     <key>CFBundleDisplayName</key>
+    <string>HealthBot</string>
+    <key>CFBundleName</key>
     <string>HealthBot</string>
     <key>CFBundleIdentifier</key>
     <string>com.technoetic.HealthBotWatch</string>
@@ -12,11 +16,15 @@
     <string>1</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
     <key>UILaunchStoryboardName</key>
     <string>LaunchScreen</string>
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
     </array>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
 </dict>
 </plist>
