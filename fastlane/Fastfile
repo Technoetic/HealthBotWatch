@@ -27,8 +27,8 @@ platform :ios do
         compileBitcode: false,
         signingStyle: "manual",
         provisioningProfiles: {
-          "com.technoetic.HealthBotWatch" => "HealthBotWatch Main AppStore",
-          "com.technoetic.HealthBotWatch.watchkitapp" => "HealthBotWatch WatchKit AppStore",
+          "com.technoetic.HealthBotWatch" => "ba89b494-bf79-4d03-823c-c18797ae6c65",
+          "com.technoetic.HealthBotWatch.watchkitapp" => "1d1e7d90-0e4f-42e6-b4a8-07a6cfd49de8",
         },
         signingCertificate: "iPhone Distribution"
       },
