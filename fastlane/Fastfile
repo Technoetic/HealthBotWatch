@@ -32,7 +32,7 @@ platform :ios do
         },
         signingCertificate: "iPhone Distribution"
       },
-      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' SDKROOT=iphoneos ENABLE_BITCODE=NO",
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' SDKROOT=iphoneos ENABLE_BITCODE=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]='arm64 x86_64'",
       clean: true
     )
 
