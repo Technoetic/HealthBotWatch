@@ -207,7 +207,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X638Y8296Z;
-				EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 x86_64";
+
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "HealthBotWatch iOS App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -231,7 +231,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X638Y8296Z;
-				EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 x86_64";
+
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "HealthBotWatch iOS App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
