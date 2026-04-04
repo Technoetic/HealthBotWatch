@@ -5,7 +5,7 @@
     <key>CFBundleDisplayName</key>
     <string>HealthBot</string>
     <key>CFBundleIdentifier</key>
-    <string>com.technoetic.HealthBotWatch.ios</string>
+    <string>com.technoetic.HealthBotWatch</string>
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>CFBundleShortVersionString</key>

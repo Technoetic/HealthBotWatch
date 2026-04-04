@@ -27,8 +27,8 @@ platform :ios do
         compileBitcode: false,
         signingStyle: "manual",
         provisioningProfiles: {
-          "com.technoetic.HealthBotWatch.ios" => "HealthBotWatch iOS AppStore",
-          "com.technoetic.HealthBotWatch" => "HealthBotWatch AppStore",
+          "com.technoetic.HealthBotWatch" => "HealthBotWatch Main AppStore",
+          "com.technoetic.HealthBotWatch.watchkitapp" => "HealthBotWatch WatchKit AppStore",
         },
         signingCertificate: "iPhone Distribution"
       },
@@ -38,6 +38,7 @@ platform :ios do
 
     upload_to_testflight(
       api_key: api_key,
+      app_identifier: "com.technoetic.HealthBotWatch",
       skip_waiting_for_build_processing: true
     )
   end
