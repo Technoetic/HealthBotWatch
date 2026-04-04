@@ -21,8 +21,9 @@ jobs:
       - name: Show Xcode version
         run: |
           xcodebuild -version
-          xcrun simctl list runtimes 2>&1 | head -20
-          ls /Library/Developer/CoreSimulator/Profiles/Runtimes/ 2>/dev/null || echo "No runtimes dir"
+          ls /Applications/Xcode*.app 2>/dev/null
+          xcrun --sdk iphoneos --show-sdk-version || true
+          xcrun simctl list runtimes 2>&1 | head -10 || true
 
       - name: Install Distribution Certificate
         env:
