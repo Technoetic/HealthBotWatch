@@ -28,10 +28,11 @@ platform :ios do
         signingStyle: "manual",
         provisioningProfiles: {
           "com.technoetic.HealthBotWatch.ios" => "HealthBotWatch iOS AppStore",
-          "com.technoetic.HealthBotWatch" => "HealthBotWatch AppStore"
-        }
+          "com.technoetic.HealthBotWatch" => "HealthBotWatch AppStore",
+        },
+        signingCertificate: "iPhone Distribution"
       },
-      xcargs: "CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER_ios='HealthBotWatch iOS AppStore' PROVISIONING_PROFILE_SPECIFIER='HealthBotWatch AppStore' CODE_SIGN_IDENTITY='iPhone Distribution'",
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution'",
       clean: true
     )
 
