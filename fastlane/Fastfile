@@ -24,6 +24,7 @@ platform :ios do
         teamID: ENV["TEAM_ID"],
         uploadSymbols: true,
         compileBitcode: false,
+        thinning: "<none>",
         signingStyle: "manual",
         provisioningProfiles: {
           "com.technoetic.HealthBotWatch" => "ba89b494-bf79-4d03-823c-c18797ae6c65",
@@ -31,7 +32,7 @@ platform :ios do
         },
         signingCertificate: "iPhone Distribution"
       },
-      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' SDKROOT=iphoneos ONLY_ACTIVE_ARCH=NO",
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' SDKROOT=iphoneos ENABLE_BITCODE=NO",
       clean: true
     )
 
