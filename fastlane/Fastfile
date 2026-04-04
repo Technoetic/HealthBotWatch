@@ -19,7 +19,6 @@ platform :ios do
       scheme: "HealthBotWatch",
       project: "HealthBotWatch.xcodeproj",
       configuration: "Release",
-      destination: "generic/platform=iOS",
       export_method: "app-store",
       export_options: {
         teamID: ENV["TEAM_ID"],
