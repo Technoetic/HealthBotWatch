@@ -1,0 +1,37 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Deploy to TestFlight"
+  lane :beta do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_PRIVATE_KEY"],
+      is_key_content_base64: false
+    )
+
+    increment_build_number(
+      build_number: Time.now.strftime("%Y%m%d%H%M"),
+      xcodeproj: "HealthBotWatch.xcodeproj"
+    )
+
+    build_app(
+      scheme: "HealthBotWatch",
+      project: "HealthBotWatch.xcodeproj",
+      configuration: "Release",
+      destination: "generic/platform=iOS",
+      export_method: "app-store",
+      export_options: {
+        teamID: ENV["TEAM_ID"],
+        uploadSymbols: true,
+        compileBitcode: false
+      },
+      clean: true
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
+    )
+  end
+end
