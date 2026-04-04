@@ -43,23 +43,15 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           PROFILES_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
 
-          install_profile() {
-            local secret_b64="$1"
-            local tmp_file="$2"
-            echo "$secret_b64" | base64 --decode > "$tmp_file"
-            # Extract UUID using security cms to decode the CMS-signed file
-            local uuid
-            uuid=$(security cms -D -i "$tmp_file" 2>/dev/null | plutil -extract UUID raw - 2>/dev/null)
-            if [ -z "$uuid" ]; then
-              echo "ERROR: Could not extract UUID from $tmp_file"
-              exit 1
-            fi
-            cp "$tmp_file" "${PROFILES_DIR}/${uuid}.mobileprovision"
-            echo "Installed: ${uuid}.mobileprovision"
-          }
+          # WatchKit profile UUID: 1d1e7d90-0e4f-42e6-b4a8-07a6cfd49de8
+          echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > \
+            "${PROFILES_DIR}/1d1e7d90-0e4f-42e6-b4a8-07a6cfd49de8.mobileprovision"
 
-          install_profile "${{ secrets.PROVISIONING_PROFILE }}" /tmp/watch.mobileprovision
-          install_profile "${{ secrets.IOS_PROVISIONING_PROFILE }}" /tmp/ios.mobileprovision
+          # iOS Main profile UUID: ba89b494-bf79-4d03-823c-c18797ae6c65
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > \
+            "${PROFILES_DIR}/ba89b494-bf79-4d03-823c-c18797ae6c65.mobileprovision"
+
+          echo "Installed profiles:"
           ls "$PROFILES_DIR"
 
       - name: Setup Ruby
