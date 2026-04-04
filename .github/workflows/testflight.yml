@@ -21,9 +21,13 @@ jobs:
       - name: Show Xcode version
         run: |
           xcodebuild -version
-          ls /Applications/Xcode*.app 2>/dev/null
           xcrun --sdk iphoneos --show-sdk-version || true
-          xcrun simctl list runtimes 2>&1 | head -10 || true
+
+      - name: Download iOS Platform
+        run: |
+          # iOS platform SDK 다운로드 (generic/platform=iOS 사용에 필요)
+          xcodebuild -downloadPlatform iOS 2>&1 | tail -5 || true
+          echo "Platform download done"
 
       - name: Install Distribution Certificate
         env:
