@@ -20,7 +20,7 @@ platform :ios do
       project: "HealthBotWatch.xcodeproj",
       configuration: "Release",
       destination: "generic/platform=iOS",
-      export_method: "app-store",
+      export_method: "app-store-connect",
       export_options: {
         teamID: ENV["TEAM_ID"],
         uploadSymbols: true,
