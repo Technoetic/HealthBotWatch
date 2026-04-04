@@ -41,17 +41,32 @@ jobs:
       - name: Install Provisioning Profiles
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          # Decode profiles and save with UUID filename (required by Xcode)
-          WATCH_PP=$(echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode)
-          IOS_PP=$(echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode)
-          WATCH_UUID=$(echo "$WATCH_PP" | security cms -D 2>/dev/null | plutil -extract UUID xml1 -o - - | xmllint --xpath "//string/text()" - 2>/dev/null || echo "watch-profile")
-          IOS_UUID=$(echo "$IOS_PP" | security cms -D 2>/dev/null | plutil -extract UUID xml1 -o - - | xmllint --xpath "//string/text()" - 2>/dev/null || echo "ios-profile")
-          echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > \
-            ~/Library/MobileDevice/Provisioning\ Profiles/${WATCH_UUID}.mobileprovision
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > \
-            ~/Library/MobileDevice/Provisioning\ Profiles/${IOS_UUID}.mobileprovision
-          echo "Installed profiles: $WATCH_UUID, $IOS_UUID"
-          ls ~/Library/MobileDevice/Provisioning\ Profiles/
+          PROFILES_DIR=~/Library/MobileDevice/Provisioning\ Profiles
+
+          # Decode watch profile and extract UUID
+          echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > /tmp/watch.mobileprovision
+          WATCH_UUID=$(python3 -c "
+          import plistlib, sys
+          with open('/tmp/watch.mobileprovision','rb') as f: data=f.read()
+          start=data.find(b'<?xml'); end=data.find(b'</plist>')+8
+          p=plistlib.loads(data[start:end])
+          print(p['UUID'])
+          ")
+          cp /tmp/watch.mobileprovision "${PROFILES_DIR}/${WATCH_UUID}.mobileprovision"
+
+          # Decode iOS profile and extract UUID
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > /tmp/ios.mobileprovision
+          IOS_UUID=$(python3 -c "
+          import plistlib, sys
+          with open('/tmp/ios.mobileprovision','rb') as f: data=f.read()
+          start=data.find(b'<?xml'); end=data.find(b'</plist>')+8
+          p=plistlib.loads(data[start:end])
+          print(p['UUID'])
+          ")
+          cp /tmp/ios.mobileprovision "${PROFILES_DIR}/${IOS_UUID}.mobileprovision"
+
+          echo "Installed: ${WATCH_UUID}.mobileprovision, ${IOS_UUID}.mobileprovision"
+          ls "$PROFILES_DIR"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
