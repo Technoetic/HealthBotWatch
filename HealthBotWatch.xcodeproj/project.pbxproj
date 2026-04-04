@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		/* iOS App */
+		B1000001 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001 /* iOSApp.swift */; };
+		B1000002 /* IOSContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000002 /* IOSContentView.swift */; };
+		/* watchOS Extension */
 		A1000001 /* HealthBotWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* HealthBotWatchApp.swift */; };
 		A1000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002 /* ContentView.swift */; };
 		A1000003 /* HealthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003 /* HealthViewModel.swift */; };
@@ -16,23 +20,40 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		/* iOS */
+		B2000001 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		B2000002 /* IOSContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSContentView.swift; sourceTree = "<group>"; };
+		B3000001 /* iOS Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "HealthBotWatch iOS App/Info.plist"; sourceTree = "<group>"; };
+		B4000001 /* HealthBotWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthBotWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		/* watchOS */
 		A2000001 /* HealthBotWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBotWatchApp.swift; sourceTree = "<group>"; };
 		A2000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2000003 /* HealthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewModel.swift; sourceTree = "<group>"; };
 		A2000004 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		A2000005 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
 		A2000006 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		A3000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4000001 /* HealthBotWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthBotWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3000001 /* Watch Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "HealthBotWatch WatchKit Extension/Info.plist"; sourceTree = "<group>"; };
+		A4000001 /* HealthBotWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HealthBotWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		A5000001 = {
+		ROOT = {
 			isa = PBXGroup;
 			children = (
+				B5000001 /* HealthBotWatch iOS App */,
 				A5000002 /* HealthBotWatch WatchKit Extension */,
 				A5000003 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		B5000001 /* HealthBotWatch iOS App */ = {
+			isa = PBXGroup;
+			children = (
+				B2000001 /* iOSApp.swift */,
+				B2000002 /* IOSContentView.swift */,
+				B3000001 /* iOS Info.plist */,
+			);
+			path = "HealthBotWatch iOS App";
 			sourceTree = "<group>";
 		};
 		A5000002 /* HealthBotWatch WatchKit Extension */ = {
@@ -44,7 +65,7 @@
 				A2000004 /* HealthManager.swift */,
 				A2000005 /* HealthData.swift */,
 				A2000006 /* APIClient.swift */,
-				A3000001 /* Info.plist */,
+				A3000001 /* Watch Info.plist */,
 			);
 			path = "HealthBotWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -52,7 +73,8 @@
 		A5000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A4000001 /* HealthBotWatch.app */,
+				B4000001 /* HealthBotWatch.app */,
+				A4000001 /* HealthBotWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,22 +82,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A6000001 /* HealthBotWatch */ = {
+		/* iOS Target */
+		B6000001 /* HealthBotWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7000001 /* Build configuration list for PBXNativeTarget "HealthBotWatch" */;
+			buildConfigurationList = B7000001;
 			buildPhases = (
-				A8000001 /* Sources */,
+				B8000001 /* Sources */,
 			);
-			buildRules = (
-			);
+			buildRules = ();
 			dependencies = (
+				C1000001 /* watchOS dependency */,
 			);
 			name = HealthBotWatch;
 			productName = HealthBotWatch;
-			productReference = A4000001 /* HealthBotWatch.app */;
+			productReference = B4000001;
+			productType = "com.apple.product-type.application";
+		};
+		/* watchOS Target */
+		A6000001 /* HealthBotWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7000001;
+			buildPhases = (
+				A8000001 /* Sources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = "HealthBotWatch Watch App";
+			productName = "HealthBotWatch Watch App";
+			productReference = A4000001;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
+
+/* Begin PBXTargetDependency section */
+		C1000001 = {
+			isa = PBXTargetDependency;
+			target = A6000001;
+			targetProxy = C1000002;
+		};
+		C1000002 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9000001;
+			proxyType = 1;
+			remoteGlobalIDString = A6000001;
+			remoteInfo = "HealthBotWatch Watch App";
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXProject section */
 		A9000001 /* Project object */ = {
@@ -85,31 +137,37 @@
 				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = technoetic;
 				TargetAttributes = {
-					A6000001 = {
-						CreatedOnToolsVersion = 15.0;
-					};
+					B6000001 = { CreatedOnToolsVersion = 15.0; };
+					A6000001 = { CreatedOnToolsVersion = 15.0; };
 				};
 			};
-			buildConfigurationList = A7000002 /* Build configuration list for PBXProject "HealthBotWatch" */;
+			buildConfigurationList = A7000002;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = ko;
 			hasScannedForEncodings = 0;
-			knownRegions = (
-				ko,
-				Base,
-			);
-			mainGroup = A5000001;
-			productRefGroup = A5000003 /* Products */;
+			knownRegions = (ko, Base);
+			mainGroup = ROOT;
+			productRefGroup = A5000003;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A6000001 /* HealthBotWatch */,
+				B6000001 /* HealthBotWatch (iOS) */,
+				A6000001 /* HealthBotWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A8000001 /* Sources */ = {
+		B8000001 /* iOS Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1000001 /* iOSApp.swift in Sources */,
+				B1000002 /* IOSContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8000001 /* watchOS Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,91 +183,109 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A7000003 /* Debug */ = {
+		/* iOS Debug */
+		B7000003 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X638Y8296Z;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "HealthBotWatch iOS App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch.ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		/* iOS Release */
+		B7000004 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X638Y8296Z;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "HealthBotWatch iOS App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch.ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		/* watchOS Debug */
+		A7000003 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "HealthBotWatch WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.technoetic.HealthBotWatch;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
-		A7000004 /* Release */ = {
+		/* watchOS Release */
+		A7000004 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "HealthBotWatch WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.technoetic.HealthBotWatch;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
-		A7000005 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-			};
-			name = Debug;
-		};
-		A7000006 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-			};
-			name = Release;
-		};
+		/* Project Debug */
+		A7000005 = { isa = XCBuildConfiguration; buildSettings = {}; name = Debug; };
+		/* Project Release */
+		A7000006 = { isa = XCBuildConfiguration; buildSettings = {}; name = Release; };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A7000001 /* Build configuration list for PBXNativeTarget "HealthBotWatch" */ = {
+		B7000001 = {
 			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7000003 /* Debug */,
-				A7000004 /* Release */,
-			);
+			buildConfigurations = (B7000003, B7000004);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7000002 /* Build configuration list for PBXProject "HealthBotWatch" */ = {
+		A7000001 = {
 			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7000005 /* Debug */,
-				A7000006 /* Release */,
-			);
+			buildConfigurations = (A7000003, A7000004);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7000002 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (A7000005, A7000006);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 	};
-	rootObject = A9000001 /* Project object */;
+	rootObject = A9000001;
 }

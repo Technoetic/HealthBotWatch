@@ -23,14 +23,11 @@ jobs:
           P12_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_P12 }}
           P12_PASSWORD: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSWORD }}
         run: |
-          # 키체인 생성
           KEYCHAIN_PATH=$RUNNER_TEMP/build.keychain
           security create-keychain -p "temp_password" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "temp_password" $KEYCHAIN_PATH
           security list-keychains -d user -s $KEYCHAIN_PATH login.keychain
-
-          # P12 임포트
           echo "$P12_BASE64" | base64 --decode > $RUNNER_TEMP/distribution.p12
           security import $RUNNER_TEMP/distribution.p12 \
             -k $KEYCHAIN_PATH \
@@ -56,12 +53,12 @@ jobs:
       - name: Install xcbeautify
         run: brew install xcbeautify
 
-      - name: Build & Archive (watchOS)
+      - name: Build & Archive (iOS + watchOS)
         run: |
           xcodebuild archive \
             -project HealthBotWatch.xcodeproj \
             -scheme HealthBotWatch \
-            -destination 'generic/platform=watchOS' \
+            -destination 'generic/platform=iOS' \
             -archivePath $RUNNER_TEMP/HealthBotWatch.xcarchive \
             -configuration Release \
             -allowProvisioningUpdates \
@@ -69,9 +66,7 @@ jobs:
             -authenticationKeyID ${{ secrets.APP_STORE_CONNECT_KEY_ID }} \
             -authenticationKeyIssuerID ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }} \
             DEVELOPMENT_TEAM=${{ secrets.TEAM_ID }} \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="iPhone Distribution" \
-            PROVISIONING_PROFILE_SPECIFIER="HealthBotWatch AppStore" \
+            CODE_SIGN_STYLE=Automatic \
             | xcbeautify
 
       - name: Export IPA
@@ -82,11 +77,9 @@ jobs:
           <plist version="1.0">
           <dict>
             <key>method</key>
-            <string>release-testing</string>
+            <string>app-store-connect</string>
             <key>teamID</key>
             <string>${{ secrets.TEAM_ID }}</string>
-            <key>signingStyle</key>
-            <string>manual</string>
             <key>uploadSymbols</key>
             <true/>
           </dict>
@@ -108,5 +101,4 @@ jobs:
             --type ios \
             --file "$RUNNER_TEMP/export/HealthBotWatch.ipa" \
             --apiKey ${{ secrets.APP_STORE_CONNECT_KEY_ID }} \
-            --apiIssuer ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }} \
-            --verbose
+            --apiIssuer ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
