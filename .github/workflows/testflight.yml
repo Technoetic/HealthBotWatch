@@ -41,6 +41,12 @@ jobs:
             -S apple-tool:,apple: \
             -s -k "temp_password" $KEYCHAIN_PATH
 
+      - name: Install Provisioning Profile
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > \
+            ~/Library/MobileDevice/Provisioning\ Profiles/HealthBotWatch_AppStore.mobileprovision
+
       - name: Setup App Store Connect API Key
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
@@ -65,6 +71,7 @@ jobs:
             DEVELOPMENT_TEAM=${{ secrets.TEAM_ID }} \
             CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="iPhone Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="HealthBotWatch AppStore" \
             | xcbeautify
 
       - name: Export IPA
