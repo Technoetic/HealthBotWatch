@@ -55,7 +55,10 @@ platform :ios do
     )
 
     register_devices(
-      devices: { "iPhone SE" => "00008110-001C31622647801E" },
+      devices: {
+        "iPhone SE" => "00008110-001C31622647801E",
+        "Apple Watch Series 7" => "00008301-D890D9843E8B402E"
+      },
       api_key: api_key
     )
 
