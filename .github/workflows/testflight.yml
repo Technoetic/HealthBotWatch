@@ -40,11 +40,10 @@ jobs:
           echo "=== Available SDKs ==="
           xcodebuild -showsdks 2>&1 || true
           echo "=== Downloading iOS Platform ==="
-          xcodebuild -downloadPlatform iOS 2>&1 || echo "iOS download failed (may already be present)"
-          echo "=== Downloading watchOS Platform ==="
-          xcodebuild -downloadPlatform watchOS 2>&1 || echo "watchOS download failed (may already be present)"
+          # -downloadAllPlatforms은 모든 플랫폼을 한번에 다운로드
+          xcodebuild -downloadAllPlatforms 2>&1 | tail -5 || echo "downloadAllPlatforms done"
           echo "=== Final SDKs ==="
-          xcodebuild -showsdks 2>&1 | grep -E "ios|watch" || true
+          xcodebuild -showsdks 2>&1 | grep -E "iphoneos|watchos" || true
 
       - name: Install Distribution Certificate
         env:
