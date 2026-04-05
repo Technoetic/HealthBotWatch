@@ -17,7 +17,7 @@ class HealthViewModel: ObservableObject {
     @Published var lastSentTime: String?
     @Published var nextAutoSendText = "5:00"
 
-    private var countdown: Int = 300
+    private var nextSendDate: Date = Date().addingTimeInterval(300)
     private var countdownTimer: Timer?
 
     func start() {
@@ -98,20 +98,22 @@ class HealthViewModel: ObservableObject {
     }
 
     private func startCountdown() {
-        countdown = Int(interval)
+        countdownTimer?.invalidate()
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
-            self.countdown -= 1
-            let m = self.countdown / 60
-            let s = self.countdown % 60
-            self.nextAutoSendText = String(format: "%d:%02d", m, s)
-            if self.countdown <= 0 { self.resetCountdown() }
+            self?.updateCountdownDisplay()
         }
+        updateCountdownDisplay()
+    }
+
+    private func updateCountdownDisplay() {
+        let remaining = max(0, Int(nextSendDate.timeIntervalSinceNow))
+        let m = remaining / 60
+        let s = remaining % 60
+        nextAutoSendText = String(format: "%d:%02d", m, s)
     }
 
     private func resetCountdown() {
-        countdown = Int(interval)
-        countdownTimer?.invalidate()
+        nextSendDate = Date().addingTimeInterval(interval)
         startCountdown()
     }
 }
