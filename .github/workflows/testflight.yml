@@ -15,15 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Select Xcode 16
+      - name: Select Xcode
         run: |
-          # Xcode 16.3이 있으면 사용 (watchOS 11.4 포함), 없으면 16.2
-          if [ -d "/Applications/Xcode_16.3.app" ]; then
-            sudo xcode-select -s /Applications/Xcode_16.3.app
-            echo "Using Xcode 16.3"
-          elif [ -d "/Applications/Xcode_16.2.app" ]; then
-            sudo xcode-select -s /Applications/Xcode_16.2.app
-            echo "Using Xcode 16.2"
+          # 최신 Xcode 사용 (iOS 26 / watchOS 26 SDK 지원)
+          ls /Applications/Xcode*.app/Contents/Developer 2>/dev/null | head -20 || true
+          LATEST_XCODE=$(ls -d /Applications/Xcode*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$LATEST_XCODE" ]; then
+            sudo xcode-select -s "$LATEST_XCODE"
+            echo "Using $LATEST_XCODE"
           else
             echo "Using default Xcode"
           fi
