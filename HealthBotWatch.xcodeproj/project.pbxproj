@@ -19,6 +19,7 @@
 		A1000004 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000004 /* HealthManager.swift */; };
 		A1000005 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000005 /* HealthData.swift */; };
 		A1000006 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000006 /* APIClient.swift */; };
+		A1000008 /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008 /* BackgroundManager.swift */; };
 		A1000007 /* Watch Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000007 /* Watch Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		A2000004 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		A2000005 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
 		A2000006 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		A2000008 /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
 		A2000007 /* Watch Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets.xcassets"; sourceTree = "<group>"; };
 		A3000001 /* Watch Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "HealthBotWatch WatchKit Extension/Info.plist"; sourceTree = "<group>"; };
 		A4000001 /* HealthBotWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HealthBotWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 				A2000004 /* HealthManager.swift */,
 				A2000005 /* HealthData.swift */,
 				A2000006 /* APIClient.swift */,
+				A2000008 /* BackgroundManager.swift */,
 				A2000007 /* Watch Assets.xcassets */,
 				A3000001 /* Watch Info.plist */,
 			);
@@ -205,6 +208,7 @@
 				A1000004 /* HealthManager.swift in Sources */,
 				A1000005 /* HealthData.swift in Sources */,
 				A1000006 /* APIClient.swift in Sources */,
+				A1000008 /* BackgroundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
