@@ -67,21 +67,8 @@ jobs:
             -S apple-tool:,apple: \
             -s -k "temp_password" $KEYCHAIN_PATH
 
-      - name: Install Provisioning Profiles
-        run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          PROFILES_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
-
-          # WatchKit profile UUID: 1d1e7d90-0e4f-42e6-b4a8-07a6cfd49de8
-          echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > \
-            "${PROFILES_DIR}/1d1e7d90-0e4f-42e6-b4a8-07a6cfd49de8.mobileprovision"
-
-          # iOS Main profile UUID: ba89b494-bf79-4d03-823c-c18797ae6c65
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > \
-            "${PROFILES_DIR}/ba89b494-bf79-4d03-823c-c18797ae6c65.mobileprovision"
-
-          echo "Installed profiles:"
-          ls "$PROFILES_DIR"
+      - name: Prepare Provisioning Profiles Dir
+        run: mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
