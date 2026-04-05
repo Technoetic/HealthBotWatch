@@ -16,24 +16,35 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Select Xcode 16
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app || sudo xcode-select -s /Applications/Xcode_16.3.app || sudo xcode-select -s /Applications/Xcode_16.app || true
+        run: |
+          # Xcode 16.3이 있으면 사용 (watchOS 11.4 포함), 없으면 16.2
+          if [ -d "/Applications/Xcode_16.3.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_16.3.app
+            echo "Using Xcode 16.3"
+          elif [ -d "/Applications/Xcode_16.2.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_16.2.app
+            echo "Using Xcode 16.2"
+          else
+            echo "Using default Xcode"
+          fi
 
       - name: Show Xcode version
         run: |
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version || true
 
-      - name: Download iOS and watchOS Platforms
+      - name: Download Platforms
         run: |
+          echo "=== Xcode path ==="
+          xcode-select -p
           echo "=== Available SDKs ==="
           xcodebuild -showsdks 2>&1 || true
           echo "=== Downloading iOS Platform ==="
-          xcodebuild -downloadPlatform iOS 2>&1 || true
+          xcodebuild -downloadPlatform iOS 2>&1 || echo "iOS download failed (may already be present)"
           echo "=== Downloading watchOS Platform ==="
-          xcodebuild -downloadPlatform watchOS 2>&1 || true
-          echo "=== SDK Paths ==="
-          xcrun --sdk iphoneos --show-sdk-path 2>&1 || true
-          xcrun --sdk watchos --show-sdk-path 2>&1 || true
+          xcodebuild -downloadPlatform watchOS 2>&1 || echo "watchOS download failed (may already be present)"
+          echo "=== Final SDKs ==="
+          xcodebuild -showsdks 2>&1 | grep -E "ios|watch" || true
 
       - name: Install Distribution Certificate
         env:
