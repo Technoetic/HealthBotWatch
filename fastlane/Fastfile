@@ -84,6 +84,20 @@ platform :ios do
     UI.message("iOS profile UUID: #{ios_uuid}")
     UI.message("Watch profile UUID: #{watch_uuid}")
 
+    # pbxproj에 프로필 UUID 주입
+    update_project_provisioning(
+      xcodeproj: "HealthBotWatch.xcodeproj",
+      profile: lane_context[SharedValues::SIGH_PROFILE_PATHS].find { |p| p.include?("com.technoetic.HealthBotWatch.watchkitapp") } || "",
+      target_filter: "Watch App",
+      build_configuration: "Release"
+    )
+    update_project_provisioning(
+      xcodeproj: "HealthBotWatch.xcodeproj",
+      profile: lane_context[SharedValues::SIGH_PROFILE_PATHS].find { |p| !p.include?("watchkitapp") } || "",
+      target_filter: "HealthBotWatch$",
+      build_configuration: "Release"
+    )
+
     increment_build_number(
       build_number: Time.now.strftime("%Y%m%d%H%M"),
       xcodeproj: "HealthBotWatch.xcodeproj"
