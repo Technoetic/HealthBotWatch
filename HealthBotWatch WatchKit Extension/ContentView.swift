@@ -6,7 +6,6 @@ struct ContentView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-                // 상태 헤더
                 HStack {
                     Circle()
                         .fill(viewModel.isConnected ? Color.green : Color.gray)
@@ -17,7 +16,6 @@ struct ContentView: View {
                     Spacer()
                 }
 
-                // 건강 데이터 카드
                 VStack(spacing: 6) {
                     HealthRow(icon: "❤️", label: "심박수", value: viewModel.heartRateText)
                     HealthRow(icon: "💧", label: "산소포화도", value: viewModel.spo2Text)
@@ -29,22 +27,10 @@ struct ContentView: View {
                 .background(Color.gray.opacity(0.15))
                 .cornerRadius(10)
 
-                // 마지막 전송 시간
-                if let lastSent = viewModel.lastSentTime {
-                    Text("마지막 전송: \(lastSent)")
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                }
-
-                // 수동 전송 버튼
-                Button(action: { viewModel.sendNow() }) {
+                Button(action: { viewModel.refresh() }) {
                     HStack {
-                        if viewModel.isSending {
-                            ProgressView().progressViewStyle(CircularProgressViewStyle())
-                        } else {
-                            Image(systemName: "arrow.up.circle.fill")
-                        }
-                        Text(viewModel.isSending ? "전송 중..." : "지금 전송")
+                        Image(systemName: "arrow.clockwise")
+                        Text("새로고침")
                     }
                     .font(.footnote.bold())
                     .frame(maxWidth: .infinity)
@@ -52,12 +38,6 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.blue)
-                .disabled(viewModel.isSending)
-
-                // 다음 자동 전송까지
-                Text("다음 자동 전송: \(viewModel.nextAutoSendText)")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
             }
             .padding(.horizontal, 8)
         }
