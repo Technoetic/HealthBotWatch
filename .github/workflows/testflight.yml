@@ -28,9 +28,9 @@ jobs:
           echo "=== Available SDKs ==="
           xcodebuild -showsdks 2>&1 || true
           echo "=== Downloading iOS Platform ==="
-          xcodebuild -downloadPlatform iOS 2>&1
+          xcodebuild -downloadPlatform iOS 2>&1 || true
           echo "=== Downloading watchOS Platform ==="
-          xcodebuild -downloadPlatform watchOS 2>&1
+          xcodebuild -downloadPlatform watchOS 2>&1 || true
           echo "=== SDK Paths ==="
           xcrun --sdk iphoneos --show-sdk-path 2>&1 || true
           xcrun --sdk watchos --show-sdk-path 2>&1 || true
