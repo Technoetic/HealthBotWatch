@@ -33,24 +33,28 @@ jobs:
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version || true
 
-      - name: Download Platforms
+      - name: Setup Platforms
         run: |
           echo "=== Xcode path ==="
           xcode-select -p
+          XCODE_DEV=$(xcode-select -p)
+          XCODE_APP=$(echo "$XCODE_DEV" | sed 's|/Contents/Developer||')
+          echo "Xcode App: $XCODE_APP"
           echo "=== Available SDKs ==="
           xcodebuild -showsdks 2>&1 || true
-          echo "=== Check iOS Device Support ==="
-          XCODE_APP=$(xcode-select -p | sed 's|/Contents/Developer||')
-          echo "Xcode App: $XCODE_APP"
-          ls "${XCODE_APP}/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/" 2>/dev/null | head -10 || echo "No device support dir"
           echo "=== Downloading watchOS Platform ==="
           xcodebuild -downloadPlatform watchOS 2>&1 || echo "watchOS download done"
-          echo "=== Create iOS Device Support Symlink ==="
-          # Xcode 내 플랫폼 SDK를 device support로 링크
+          echo "=== Create iOS Device Support stub ==="
           IOS_VERSION=$(xcrun --sdk iphoneos --show-sdk-version 2>/dev/null || echo "18.4")
-          DEVICE_SUPPORT="${XCODE_APP}/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport"
-          mkdir -p "${DEVICE_SUPPORT}/${IOS_VERSION}" 2>/dev/null || true
-          ls "${DEVICE_SUPPORT}" 2>/dev/null | head -5 || true
+          echo "iOS SDK Version: $IOS_VERSION"
+          # DeviceSupport 내 버전 디렉토리 생성 (Xcode가 "not installed" 에러를 내지 않도록)
+          DS_DIR="$XCODE_APP/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport"
+          sudo mkdir -p "$DS_DIR/$IOS_VERSION"
+          ls "$DS_DIR" 2>/dev/null || echo "DeviceSupport dir not found"
+          echo "=== User DeviceSupport ==="
+          USER_DS="$HOME/Library/Developer/Xcode/iOS DeviceSupport"
+          mkdir -p "$USER_DS/$IOS_VERSION"
+          ls "$USER_DS" 2>/dev/null || true
           echo "=== Done ==="
 
       - name: Install Distribution Certificate
