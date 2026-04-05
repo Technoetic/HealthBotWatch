@@ -240,6 +240,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
+				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch iOS App/HealthBotWatch.entitlements";
 				INFOPLIST_FILE = "HealthBotWatch iOS App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
@@ -262,6 +263,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
+				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch iOS App/HealthBotWatch.entitlements";
 				INFOPLIST_FILE = "HealthBotWatch iOS App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
@@ -285,6 +287,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
+				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch WatchKit Extension/HealthBotWatch Watch App.entitlements";
 				INFOPLIST_FILE = "HealthBotWatch WatchKit Extension/Info.plist";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch.watchkitapp";
@@ -309,6 +312,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
+				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch WatchKit Extension/HealthBotWatch Watch App.entitlements";
 				INFOPLIST_FILE = "HealthBotWatch WatchKit Extension/Info.plist";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch.watchkitapp";
