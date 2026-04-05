@@ -26,12 +26,28 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func scheduleNextRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: Self.bgTaskID)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        request.earliestBeginDate = nextQuarterHour()
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {
             print("BG task schedule failed: \(error)")
         }
+    }
+
+    private func nextQuarterHour() -> Date {
+        let cal = Calendar.current
+        let now = Date()
+        let minute = cal.component(.minute, from: now)
+        let nextSlot = ((minute / 15) + 1) * 15
+        var components = cal.dateComponents([.year, .month, .day, .hour], from: now)
+        if nextSlot >= 60 {
+            components.hour! += 1
+            components.minute = 0
+        } else {
+            components.minute = nextSlot
+        }
+        components.second = 0
+        return cal.date(from: components) ?? now.addingTimeInterval(15 * 60)
     }
 
     func handleBackgroundTask(_ task: BGAppRefreshTask) {
