@@ -10,6 +10,7 @@
 		/* iOS App */
 		B1000001 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001 /* iOSApp.swift */; };
 		B1000002 /* IOSContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000002 /* IOSContentView.swift */; };
+		B1000004 /* iOSHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000004 /* iOSHealthManager.swift */; };
 		B1000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2000003 /* Assets.xcassets */; };
 		C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A4000001 /* HealthBotWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		/* watchOS */
@@ -41,6 +42,7 @@
 		/* iOS */
 		B2000001 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		B2000002 /* IOSContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSContentView.swift; sourceTree = "<group>"; };
+		B2000004 /* iOSHealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSHealthManager.swift; sourceTree = "<group>"; };
 		B2000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets.xcassets"; sourceTree = "<group>"; };
 		B3000001 /* iOS Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "HealthBotWatch iOS App/Info.plist"; sourceTree = "<group>"; };
 		B4000001 /* HealthBotWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthBotWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 			children = (
 				B2000001 /* iOSApp.swift */,
 				B2000002 /* IOSContentView.swift */,
+				B2000004 /* iOSHealthManager.swift */,
 				B2000003 /* Assets.xcassets */,
 				B3000001 /* iOS Info.plist */,
 			);
@@ -195,6 +198,7 @@
 			files = (
 				B1000001 /* iOSApp.swift in Sources */,
 				B1000002 /* IOSContentView.swift in Sources */,
+				B1000004 /* iOSHealthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

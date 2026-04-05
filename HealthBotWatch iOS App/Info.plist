@@ -35,6 +35,14 @@
     <string>건강 데이터를 분석하여 AI 건강 조언을 제공합니다.</string>
     <key>NSHealthUpdateUsageDescription</key>
     <string>건강 데이터를 기록하여 AI 건강 조언을 제공합니다.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+    </array>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>com.technoetic.HealthBotWatch.healthsync</string>
+    </array>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
 </dict>
