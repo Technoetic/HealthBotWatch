@@ -26,7 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func scheduleNextRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: Self.bgTaskID)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 5 * 60)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {
