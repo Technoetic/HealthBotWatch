@@ -23,14 +23,17 @@ jobs:
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version || true
 
-      - name: Download iOS Platform
+      - name: Download iOS and watchOS Platforms
         run: |
           echo "=== Available SDKs ==="
           xcodebuild -showsdks 2>&1 || true
           echo "=== Downloading iOS Platform ==="
           xcodebuild -downloadPlatform iOS 2>&1
-          echo "=== iOS SDK Path ==="
+          echo "=== Downloading watchOS Platform ==="
+          xcodebuild -downloadPlatform watchOS 2>&1
+          echo "=== SDK Paths ==="
           xcrun --sdk iphoneos --show-sdk-path 2>&1 || true
+          xcrun --sdk watchos --show-sdk-path 2>&1 || true
 
       - name: Install Distribution Certificate
         env:
