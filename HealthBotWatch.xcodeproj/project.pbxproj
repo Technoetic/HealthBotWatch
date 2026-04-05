@@ -12,7 +12,7 @@
 		B1000002 /* IOSContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000002 /* IOSContentView.swift */; };
 		B1000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2000003 /* Assets.xcassets */; };
 		C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A4000001 /* HealthBotWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		/* watchOS Extension */
+		/* watchOS */
 		A1000001 /* HealthBotWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* HealthBotWatchApp.swift */; };
 		A1000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002 /* ContentView.swift */; };
 		A1000003 /* HealthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003 /* HealthViewModel.swift */; };
@@ -21,6 +21,20 @@
 		A1000006 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000006 /* APIClient.swift */; };
 		A1000007 /* Watch Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000007 /* Watch Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C3000001 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		/* iOS */
@@ -89,20 +103,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-/* Begin PBXCopyFilesBuildPhase section */
-		C3000001 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 		/* iOS Target */
 		B6000001 /* HealthBotWatch */ = {
 			isa = PBXNativeTarget;
@@ -137,21 +137,6 @@
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
-
-/* Begin PBXTargetDependency section */
-		C1000001 = {
-			isa = PBXTargetDependency;
-			target = A6000001;
-			targetProxy = C1000002;
-		};
-		C1000002 = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A9000001;
-			proxyType = 1;
-			remoteGlobalIDString = A6000001;
-			remoteInfo = "HealthBotWatch Watch App";
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXProject section */
 		A9000001 /* Project object */ = {
@@ -224,6 +209,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1000001 = {
+			isa = PBXTargetDependency;
+			target = A6000001;
+			targetProxy = C1000002;
+		};
+		C1000002 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9000001;
+			proxyType = 1;
+			remoteGlobalIDString = A6000001;
+			remoteInfo = "HealthBotWatch Watch App";
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		/* iOS Debug */
