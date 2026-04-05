@@ -20,20 +20,6 @@
                ReferencedContainer = "container:HealthBotWatch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6000001"
-               BuildableName = "HealthBotWatch Watch App.app"
-               BlueprintName = "HealthBotWatch Watch App"
-               ReferencedContainer = "container:HealthBotWatch.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

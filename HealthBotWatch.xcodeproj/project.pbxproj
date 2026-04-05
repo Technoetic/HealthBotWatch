@@ -7,56 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		/* iOS App */
 		B1000001 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001 /* iOSApp.swift */; };
 		B1000002 /* IOSContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000002 /* IOSContentView.swift */; };
 		B1000004 /* iOSHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000004 /* iOSHealthManager.swift */; };
 		B1000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2000003 /* Assets.xcassets */; };
-		C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A4000001 /* HealthBotWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		/* watchOS */
-		A1000001 /* HealthBotWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* HealthBotWatchApp.swift */; };
-		A1000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002 /* ContentView.swift */; };
-		A1000003 /* HealthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003 /* HealthViewModel.swift */; };
-		A1000004 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000004 /* HealthManager.swift */; };
-		A1000005 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000005 /* HealthData.swift */; };
-		A1000006 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000006 /* APIClient.swift */; };
-		A1000008 /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008 /* BackgroundManager.swift */; };
-		A1000007 /* Watch Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000007 /* Watch Assets.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		C3000001 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		/* iOS */
 		B2000001 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		B2000002 /* IOSContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSContentView.swift; sourceTree = "<group>"; };
 		B2000004 /* iOSHealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSHealthManager.swift; sourceTree = "<group>"; };
 		B2000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets.xcassets"; sourceTree = "<group>"; };
 		B3000001 /* iOS Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "HealthBotWatch iOS App/Info.plist"; sourceTree = "<group>"; };
 		B4000001 /* HealthBotWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthBotWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		/* watchOS */
-		A2000001 /* HealthBotWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBotWatchApp.swift; sourceTree = "<group>"; };
-		A2000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A2000003 /* HealthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewModel.swift; sourceTree = "<group>"; };
-		A2000004 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
-		A2000005 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
-		A2000006 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		A2000008 /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
-		A2000007 /* Watch Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets.xcassets"; sourceTree = "<group>"; };
-		A3000001 /* Watch Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "HealthBotWatch WatchKit Extension/Info.plist"; sourceTree = "<group>"; };
-		A4000001 /* HealthBotWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HealthBotWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -64,7 +27,6 @@
 			isa = PBXGroup;
 			children = (
 				B5000001 /* HealthBotWatch iOS App */,
-				A5000002 /* HealthBotWatch WatchKit Extension */,
 				A5000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,27 +43,10 @@
 			path = "HealthBotWatch iOS App";
 			sourceTree = "<group>";
 		};
-		A5000002 /* HealthBotWatch WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				A2000001 /* HealthBotWatchApp.swift */,
-				A2000002 /* ContentView.swift */,
-				A2000003 /* HealthViewModel.swift */,
-				A2000004 /* HealthManager.swift */,
-				A2000005 /* HealthData.swift */,
-				A2000006 /* APIClient.swift */,
-				A2000008 /* BackgroundManager.swift */,
-				A2000007 /* Watch Assets.xcassets */,
-				A3000001 /* Watch Info.plist */,
-			);
-			path = "HealthBotWatch WatchKit Extension";
-			sourceTree = "<group>";
-		};
 		A5000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				B4000001 /* HealthBotWatch.app */,
-				A4000001 /* HealthBotWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,37 +54,18 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		/* iOS Target */
 		B6000001 /* HealthBotWatch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7000001;
 			buildPhases = (
 				B8000001 /* Sources */,
 				B8000002 /* Resources */,
-				C3000001 /* Embed Watch Content */,
-			);
-			buildRules = ();
-			dependencies = (
-				C1000001 /* watchOS dependency */,
-			);
-			name = HealthBotWatch;
-			productName = HealthBotWatch;
-			productReference = B4000001;
-			productType = "com.apple.product-type.application";
-		};
-		/* watchOS Target */
-		A6000001 /* HealthBotWatch Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7000001;
-			buildPhases = (
-				A8000001 /* Sources */,
-				A8000002 /* Watch Resources */,
 			);
 			buildRules = ();
 			dependencies = ();
-			name = "HealthBotWatch Watch App";
-			productName = "HealthBotWatch Watch App";
-			productReference = A4000001;
+			name = HealthBotWatch;
+			productName = HealthBotWatch;
+			productReference = B4000001;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -153,7 +79,6 @@
 				ORGANIZATIONNAME = technoetic;
 				TargetAttributes = {
 					B6000001 = { CreatedOnToolsVersion = 15.0; };
-					A6000001 = { CreatedOnToolsVersion = 15.0; };
 				};
 			};
 			buildConfigurationList = A7000002;
@@ -167,7 +92,6 @@
 			projectRoot = "";
 			targets = (
 				B6000001 /* HealthBotWatch (iOS) */,
-				A6000001 /* HealthBotWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -178,14 +102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1000003 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A8000002 /* Watch Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1000007 /* Watch Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,36 +118,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8000001 /* watchOS Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1000001 /* HealthBotWatchApp.swift in Sources */,
-				A1000002 /* ContentView.swift in Sources */,
-				A1000003 /* HealthViewModel.swift in Sources */,
-				A1000004 /* HealthManager.swift in Sources */,
-				A1000005 /* HealthData.swift in Sources */,
-				A1000006 /* APIClient.swift in Sources */,
-				A1000008 /* BackgroundManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C1000001 = {
-			isa = PBXTargetDependency;
-			target = A6000001;
-			targetProxy = C1000002;
-		};
-		C1000002 = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A9000001;
-			proxyType = 1;
-			remoteGlobalIDString = A6000001;
-			remoteInfo = "HealthBotWatch Watch App";
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		/* iOS Debug */
@@ -241,7 +128,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
 				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch iOS App/HealthBotWatch.entitlements";
@@ -264,7 +151,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = X638Y8296Z;
 				GENERATE_INFOPLIST_FILE = NO;
 				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch iOS App/HealthBotWatch.entitlements";
@@ -280,56 +167,6 @@
 			};
 			name = Release;
 		};
-		/* watchOS Debug */
-		A7000003 = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_WATCH_APP_ICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
-				DEVELOPMENT_TEAM = X638Y8296Z;
-				GENERATE_INFOPLIST_FILE = NO;
-				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch WatchKit Extension/HealthBotWatch Watch App.entitlements";
-				INFOPLIST_FILE = "HealthBotWatch WatchKit Extension/Info.plist";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Debug;
-		};
-		/* watchOS Release */
-		A7000004 = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_WATCH_APP_ICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
-				DEVELOPMENT_TEAM = X638Y8296Z;
-				GENERATE_INFOPLIST_FILE = NO;
-				CODE_SIGN_ENTITLEMENTS = "HealthBotWatch WatchKit Extension/HealthBotWatch Watch App.entitlements";
-				INFOPLIST_FILE = "HealthBotWatch WatchKit Extension/Info.plist";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.technoetic.HealthBotWatch.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Release;
-		};
 		/* Project Debug */
 		A7000005 = { isa = XCBuildConfiguration; buildSettings = {}; name = Debug; };
 		/* Project Release */
@@ -340,12 +177,6 @@
 		B7000001 = {
 			isa = XCConfigurationList;
 			buildConfigurations = (B7000003, B7000004);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7000001 = {
-			isa = XCConfigurationList;
-			buildConfigurations = (A7000003, A7000004);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};

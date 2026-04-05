@@ -71,30 +71,10 @@ platform :ios do
     )
     ios_uuid = lane_context[SharedValues::SIGH_UUID]
 
-    # watchOS Ad Hoc profile
-    get_provisioning_profile(
-      api_key: api_key,
-      app_identifier: "com.technoetic.HealthBotWatch.watchkitapp",
-      adhoc: true,
-      force: true,
-      platform: "ios"
-    )
-    watch_uuid = lane_context[SharedValues::SIGH_UUID]
-
-    UI.message("iOS profile UUID: #{ios_uuid}")
-    UI.message("Watch profile UUID: #{watch_uuid}")
-
-    # pbxproj에 프로필 UUID 주입
     update_project_provisioning(
       xcodeproj: "HealthBotWatch.xcodeproj",
-      profile: lane_context[SharedValues::SIGH_PROFILE_PATHS].find { |p| p.include?("com.technoetic.HealthBotWatch.watchkitapp") } || "",
-      target_filter: "Watch App",
-      build_configuration: "Release"
-    )
-    update_project_provisioning(
-      xcodeproj: "HealthBotWatch.xcodeproj",
-      profile: lane_context[SharedValues::SIGH_PROFILE_PATHS].find { |p| !p.include?("watchkitapp") } || "",
-      target_filter: "HealthBotWatch$",
+      profile: lane_context[SharedValues::SIGH_PROFILE_PATH],
+      target_filter: "HealthBotWatch",
       build_configuration: "Release"
     )
 
@@ -116,7 +96,6 @@ platform :ios do
         signingStyle: "manual",
         provisioningProfiles: {
           "com.technoetic.HealthBotWatch" => ios_uuid,
-          "com.technoetic.HealthBotWatch.watchkitapp" => watch_uuid,
         },
         signingCertificate: "iPhone Distribution"
       },
