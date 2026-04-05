@@ -25,9 +25,12 @@ jobs:
 
       - name: Download iOS Platform
         run: |
-          # iOS platform SDK 다운로드 (generic/platform=iOS 사용에 필요)
-          xcodebuild -downloadPlatform iOS 2>&1 | tail -5 || true
-          echo "Platform download done"
+          echo "=== Available SDKs ==="
+          xcodebuild -showsdks 2>&1 || true
+          echo "=== Downloading iOS Platform ==="
+          xcodebuild -downloadPlatform iOS 2>&1
+          echo "=== iOS SDK Path ==="
+          xcrun --sdk iphoneos --show-sdk-path 2>&1 || true
 
       - name: Install Distribution Certificate
         env:
