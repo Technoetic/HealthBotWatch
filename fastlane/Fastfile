@@ -33,7 +33,7 @@ platform :ios do
         },
         signingCertificate: "iPhone Distribution"
       },
-      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' ENABLE_BITCODE=NO ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION=NO",
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' ENABLE_BITCODE=NO",
       clean: true
     )
 
