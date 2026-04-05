@@ -39,11 +39,19 @@ jobs:
           xcode-select -p
           echo "=== Available SDKs ==="
           xcodebuild -showsdks 2>&1 || true
-          echo "=== Downloading iOS Platform ==="
-          # -downloadAllPlatforms은 모든 플랫폼을 한번에 다운로드
-          xcodebuild -downloadAllPlatforms 2>&1 | tail -5 || echo "downloadAllPlatforms done"
-          echo "=== Final SDKs ==="
-          xcodebuild -showsdks 2>&1 | grep -E "iphoneos|watchos" || true
+          echo "=== Check iOS Device Support ==="
+          XCODE_APP=$(xcode-select -p | sed 's|/Contents/Developer||')
+          echo "Xcode App: $XCODE_APP"
+          ls "${XCODE_APP}/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/" 2>/dev/null | head -10 || echo "No device support dir"
+          echo "=== Downloading watchOS Platform ==="
+          xcodebuild -downloadPlatform watchOS 2>&1 || echo "watchOS download done"
+          echo "=== Create iOS Device Support Symlink ==="
+          # Xcode 내 플랫폼 SDK를 device support로 링크
+          IOS_VERSION=$(xcrun --sdk iphoneos --show-sdk-version 2>/dev/null || echo "18.4")
+          DEVICE_SUPPORT="${XCODE_APP}/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport"
+          mkdir -p "${DEVICE_SUPPORT}/${IOS_VERSION}" 2>/dev/null || true
+          ls "${DEVICE_SUPPORT}" 2>/dev/null | head -5 || true
+          echo "=== Done ==="
 
       - name: Install Distribution Certificate
         env:
