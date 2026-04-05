@@ -70,11 +70,31 @@ class HealthViewModel: ObservableObject {
         }
     }
 
+    private var pollTimer: Timer?
+
     private func startAutoTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
             self?.sendNow()
         }
         startCountdown()
+        startPolling()
+    }
+
+    private func startPolling() {
+        pollTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+            self?.checkPending()
+        }
+    }
+
+    private func checkPending() {
+        APIClient.shared.checkPending { [weak self] pending in
+            if pending {
+                DispatchQueue.main.async {
+                    self?.statusText = "요청 수신, 전송 중..."
+                    self?.sendNow()
+                }
+            }
+        }
     }
 
     private func startCountdown() {

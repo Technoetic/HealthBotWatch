@@ -29,4 +29,20 @@ class APIClient {
             completion(.success(()))
         }.resume()
     }
+
+    func checkPending(completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "\(baseURL)/pending?token=user_479945484") else {
+            completion(false); return
+        }
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 10
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            guard error == nil, let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let pending = json["pending"] as? Bool else {
+                completion(false); return
+            }
+            completion(pending)
+        }.resume()
+    }
 }
