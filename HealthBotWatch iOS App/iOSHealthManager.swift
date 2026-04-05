@@ -150,6 +150,78 @@ class iOSHealthManager {
         }
     }
 
+    // MARK: - 날짜 범위 조회 (쿼리 응답용)
+    func collectRange(start: Date, end: Date, completion: @escaping ([[String: Any]]) -> Void) {
+        let quantityTypes: [(HKQuantityTypeIdentifier, HKUnit, String)] = [
+            (.heartRate, HKUnit(from: "count/min"), "heart_rate"),
+            (.restingHeartRate, HKUnit(from: "count/min"), "resting_heart_rate"),
+            (.heartRateVariabilitySDNN, .secondUnit(with: .milli), "hrv"),
+            (.oxygenSaturation, .percent(), "blood_oxygen"),
+            (.stepCount, .count(), "steps"),
+            (.activeEnergyBurned, .kilocalorie(), "active_calories"),
+            (.respiratoryRate, HKUnit(from: "count/min"), "respiratory_rate"),
+            (.bodyTemperature, .degreeCelsius(), "body_temp_c"),
+            (.bloodGlucose, HKUnit(from: "mg/dL"), "blood_glucose"),
+            (.bodyMass, .gramUnit(with: .kilo), "weight"),
+        ]
+
+        var allRecords: [[String: Any]] = []
+        let lock = NSLock()
+        let group = DispatchGroup()
+        let formatter = ISO8601DateFormatter()
+
+        for (typeId, unit, key) in quantityTypes {
+            guard let type = HKQuantityType.quantityType(forIdentifier: typeId) else { continue }
+            group.enter()
+            let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+            let sort = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: 1000, sortDescriptors: [sort]) { _, samples, _ in
+                if let samples = samples as? [HKQuantitySample] {
+                    for sample in samples {
+                        var value = sample.quantity.doubleValue(for: unit)
+                        if key == "blood_oxygen" { value *= 100 }
+                        let record: [String: Any] = [
+                            "type": key,
+                            "value": value,
+                            "timestamp": formatter.string(from: sample.endDate)
+                        ]
+                        lock.lock(); allRecords.append(record); lock.unlock()
+                    }
+                }
+                group.leave()
+            }
+            healthStore.execute(query)
+        }
+
+        // 수면
+        group.enter()
+        if let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) {
+            let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+            let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: 100, sortDescriptors: nil) { _, samples, _ in
+                if let samples = samples as? [HKCategorySample] {
+                    let asleep = samples.filter { $0.value != HKCategoryValueSleepAnalysis.inBed.rawValue }
+                    let total = asleep.reduce(0.0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
+                    if total > 0 {
+                        let record: [String: Any] = [
+                            "type": "sleep_hours",
+                            "value": total / 3600.0,
+                            "timestamp": formatter.string(from: end)
+                        ]
+                        lock.lock(); allRecords.append(record); lock.unlock()
+                    }
+                }
+                group.leave()
+            }
+            healthStore.execute(query)
+        } else {
+            group.leave()
+        }
+
+        group.notify(queue: .global()) {
+            completion(allRecords)
+        }
+    }
+
     // MARK: - Queries
 
     private func fetchLatest(_ id: HKQuantityTypeIdentifier, unit: HKUnit, completion: @escaping (Double?) -> Void) {
