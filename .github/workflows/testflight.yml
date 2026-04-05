@@ -44,14 +44,8 @@ jobs:
           xcrun simctl list runtimes 2>&1 | head -20 || true
           echo "=== Downloading watchOS Platform ==="
           xcodebuild -downloadPlatform watchOS 2>&1 || echo "watchOS done"
-          echo "=== Boot iOS Simulator to activate platform ==="
-          # iOS Simulator를 부팅하면 iOS platform이 활성화됨
-          SIMULATOR_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | grep -oE '[0-9A-F-]{36}' | head -1)
-          echo "Simulator ID: $SIMULATOR_ID"
-          if [ -n "$SIMULATOR_ID" ]; then
-            xcrun simctl boot "$SIMULATOR_ID" 2>/dev/null || echo "Boot failed or already booted"
-            echo "Simulator booted"
-          fi
+          echo "=== Downloading iOS Platform ==="
+          xcodebuild -downloadPlatform iOS 2>&1 || echo "iOS done"
           echo "=== Done ==="
 
       - name: Install Distribution Certificate
