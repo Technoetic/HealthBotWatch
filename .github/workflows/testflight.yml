@@ -89,17 +89,17 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
-      - name: Deploy via Fastlane
+      - name: Build Ad Hoc IPA
         env:
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
           TEAM_ID: ${{ secrets.TEAM_ID }}
           MATCH_PASSWORD: ""
-        run: bundle exec fastlane beta
+        run: bundle exec fastlane adhoc
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: HealthBotWatch-IPA
+          name: HealthBotWatch-AdHoc-IPA
           path: "*.ipa"

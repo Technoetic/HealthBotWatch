@@ -44,4 +44,62 @@ platform :ios do
       skip_submission: true
     )
   end
+
+  desc "Ad Hoc build for USB install"
+  lane :adhoc do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_PRIVATE_KEY"],
+      is_key_content_base64: false
+    )
+
+    register_devices(
+      devices: { "iPhone SE" => "00008110-001C31622647801E" },
+      api_key: api_key
+    )
+
+    # iOS Ad Hoc profile
+    ios_profile = get_provisioning_profile(
+      api_key: api_key,
+      app_identifier: "com.technoetic.HealthBotWatch",
+      adhoc: true,
+      force: true
+    )
+
+    # watchOS Ad Hoc profile
+    watch_profile = get_provisioning_profile(
+      api_key: api_key,
+      app_identifier: "com.technoetic.HealthBotWatch.watchkitapp",
+      adhoc: true,
+      force: true,
+      platform: "ios"
+    )
+
+    increment_build_number(
+      build_number: Time.now.strftime("%Y%m%d%H%M"),
+      xcodeproj: "HealthBotWatch.xcodeproj"
+    )
+
+    build_app(
+      scheme: "HealthBotWatch",
+      project: "HealthBotWatch.xcodeproj",
+      configuration: "Release",
+      destination: "generic/platform=iOS",
+      export_method: "ad-hoc",
+      export_options: {
+        teamID: ENV["TEAM_ID"],
+        compileBitcode: false,
+        thinning: "<none>",
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "com.technoetic.HealthBotWatch" => ios_profile[:uuid],
+          "com.technoetic.HealthBotWatch.watchkitapp" => watch_profile[:uuid],
+        },
+        signingCertificate: "iPhone Distribution"
+      },
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' ENABLE_BITCODE=NO",
+      clean: true
+    )
+  end
 end
