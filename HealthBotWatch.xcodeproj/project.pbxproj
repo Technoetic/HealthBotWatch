@@ -11,6 +11,7 @@
 		B1000001 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001 /* iOSApp.swift */; };
 		B1000002 /* IOSContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000002 /* IOSContentView.swift */; };
 		B1000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2000003 /* Assets.xcassets */; };
+		C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A4000001 /* HealthBotWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		/* watchOS Extension */
 		A1000001 /* HealthBotWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* HealthBotWatchApp.swift */; };
 		A1000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002 /* ContentView.swift */; };
@@ -85,6 +86,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+/* Begin PBXCopyFilesBuildPhase section */
+		C3000001 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C2000001 /* HealthBotWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 		/* iOS Target */
 		B6000001 /* HealthBotWatch */ = {
 			isa = PBXNativeTarget;
@@ -92,6 +107,7 @@
 			buildPhases = (
 				B8000001 /* Sources */,
 				B8000002 /* Resources */,
+				C3000001 /* Embed Watch Content */,
 			);
 			buildRules = ();
 			dependencies = (
