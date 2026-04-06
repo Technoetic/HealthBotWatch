@@ -38,23 +38,18 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         teamID: ENV["TEAM_ID"],
-        uploadSymbols: true,
-        compileBitcode: false,
-        thinning: "<none>",
-        signingStyle: "manual",
         provisioningProfiles: {
           "com.technoetic.HealthBotWatch.ios" => appstore_uuid,
         },
-        signingCertificate: "iPhone Distribution"
       },
-      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution' ENABLE_BITCODE=NO",
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='iPhone Distribution'",
       clean: true
     )
 
     upload_to_testflight(
       api_key: api_key,
       app_identifier: "com.technoetic.HealthBotWatch.ios",
-      skip_waiting_for_build_processing: true,
+      skip_waiting_for_build_processing: false,
       skip_submission: true
     )
   end
