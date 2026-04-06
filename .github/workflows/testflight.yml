@@ -82,11 +82,23 @@ jobs:
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
           TEAM_ID: ${{ secrets.TEAM_ID }}
-          MATCH_PASSWORD: ""
         run: bundle exec fastlane adhoc
 
-      - name: Upload IPA artifact
+      - name: Save Ad Hoc IPA
+        run: |
+          mkdir -p adhoc_output
+          cp *.ipa adhoc_output/ || true
+
+      - name: Upload Ad Hoc IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: HealthBotWatch-AdHoc-IPA
-          path: "*.ipa"
+          path: "adhoc_output/*.ipa"
+
+      - name: Build & Upload TestFlight
+        env:
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+          TEAM_ID: ${{ secrets.TEAM_ID }}
+        run: bundle exec fastlane beta
