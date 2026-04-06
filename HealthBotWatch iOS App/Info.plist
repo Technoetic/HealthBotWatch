@@ -11,7 +11,7 @@
     <key>CFBundleName</key>
     <string>HealthBot</string>
     <key>CFBundleIdentifier</key>
-    <string>com.technoetic.HealthBotWatch</string>
+    <string>com.technoetic.HealthBotWatch.ios</string>
     <key>CFBundleVersion</key>
     <string>9</string>
     <key>CFBundleShortVersionString</key>
@@ -41,7 +41,7 @@
     </array>
     <key>BGTaskSchedulerPermittedIdentifiers</key>
     <array>
-        <string>com.technoetic.HealthBotWatch.healthsync</string>
+        <string>com.technoetic.HealthBotWatch.ios.healthsync</string>
     </array>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
