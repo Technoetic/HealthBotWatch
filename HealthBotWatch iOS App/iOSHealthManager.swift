@@ -62,7 +62,7 @@ class iOSHealthManager {
     func collectAndSend(completion: @escaping (Bool) -> Void) {
         let group = DispatchGroup()
         var record: [String: Any] = [
-            "token": "user_479945484",
+            "email": "seojun@longrun.app",
             "timestamp": ISO8601DateFormatter().string(from: Date())
         ]
         let lock = NSLock()
@@ -134,7 +134,7 @@ class iOSHealthManager {
         group.enter(); fetchTodaySum(.numberOfTimesFallen, unit: .count()) { set("falls", $0.map { Int($0) }); group.leave() }
 
         group.notify(queue: .global()) {
-            guard let url = URL(string: "https://health-care-bot-production.up.railway.app/health"),
+            guard let url = URL(string: "https://ravishing-grace-production.up.railway.app/api/watch-data"),
                   let jsonData = try? JSONSerialization.data(withJSONObject: record) else {
                 completion(false); return
             }
