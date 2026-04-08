@@ -246,7 +246,7 @@ class HealthManager: ObservableObject {
         }
 
         var payload = record
-        payload["email"] = token  // token 필드에 이메일 입력
+        payload["email"] = "seojun@longrun.app"
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
