@@ -126,13 +126,25 @@ struct ContentView: View {
     private func startAutoTimer() {
         autoTimer?.invalidate()
         guard settings.isConfigured else { return }
-        // 포그라운드 15분 간격 자동 전송
-        autoTimer = Timer.scheduledTimer(withTimeInterval: 15 * 60, repeats: true) { _ in
-            guard !health.isUploading && settings.isConfigured else { return }
-            health.collectAndUpload(
-                token: settings.token,
-                serverURL: settings.serverURL
-            )
+        // 다음 정각(0,15,30,45분)까지 대기 후 15분 간격 반복
+        let now = Date()
+        let cal = Calendar.current
+        let minute = cal.component(.minute, from: now)
+        let nextSlot = (minute / 15 + 1) * 15
+        var nextFire = cal.date(bySetting: .minute, value: nextSlot % 60, of: now)!
+        nextFire = cal.date(bySetting: .second, value: 0, of: nextFire)!
+        if nextSlot >= 60 {
+            nextFire = cal.date(byAdding: .hour, value: 1, to: nextFire)!
+        }
+        if nextFire <= now { nextFire = cal.date(byAdding: .minute, value: 15, to: nextFire)! }
+        let delay = nextFire.timeIntervalSince(now)
+        autoTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { _ in
+            self.uploadNow()
+            // 이후 15분마다 반복
+            self.autoTimer = Timer.scheduledTimer(withTimeInterval: 15 * 60, repeats: true) { _ in
+                guard !self.health.isUploading else { return }
+                self.uploadNow()
+            }
         }
     }
 }
