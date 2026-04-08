@@ -7,9 +7,6 @@ jobs:
   adhoc:
     runs-on: macos-latest
     timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: watchos_app/HealthBotWatch
     steps:
       - uses: actions/checkout@v4
 
@@ -45,7 +42,6 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
-          working-directory: watchos_app/HealthBotWatch
 
       - name: Install Fastlane
         run: bundle install --jobs 4
